@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ant" basedir="." default="world">
+
+    <target name="hello" description="Initializes properties">
+        <echo message = "Hello"/>
+    </target>
+    <target name="world" depends="hello">
+        <echo message = "World"/>
+    </target>
+</project>
