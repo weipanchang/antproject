@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.3
+Created-By: 1.8.0_25-b17 (Oracle Corporation)
+Built-By: william
+
+Name: common
+Specification-Title: Airetalk Build
+Specification-Version: 1.1
+Specification-Vendor: PingShow Inc
+User-Name: william
+Implementation-Title: common
+Implementation-Version: 1.1 01/22/2015 06:32 PM
+Implementation-Vendor: PingShow Inc.
+

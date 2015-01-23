@@ -28,8 +28,7 @@
     <target name="jarfile" description="JARs the code" depends="compile">
         <jar destfile="${build.dir}/${project.name}.jar" 
                basedir="${classes.dir}" />
-<!--               manifest="${etc.dir}/MANIFEST.MF"  />-->
-<!--      <include name="build"/> --> 
+
       <manifest file="${etc.dir}/MANIFEST.MF">
           <attribute name="Built-By" value="${user.name}"/>
           <section name="common">
@@ -39,9 +38,7 @@
           <attribute name="Implementation-Title" value="common"/>
           <attribute name="Implementation-Version" value="${version} ${TODAY}"/> 
           <attribute name="Implementation-Vendor" value="Example Corp."/>
-<!--        </section>
-        <section name="common/class1.class">
-          <attribute name="Sealed" value="false"/>-->
+
         </section>
       </manifest>
     </target>
