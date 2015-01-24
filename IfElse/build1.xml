@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ant-demo" default="do-it" basedir=".">
+	<target name="howdy">
+		<input  message="What's your choice?" addproperty="choice" validargs="1,2,3,4" />
+		<echo> Choice 1, </echo>
+                <echo> Choice 2, </echo>
+                <echo> Choice 3, </echo>
+                <echo> ${choice}?</echo>
+	</target>
+        <target name="do-it" depends="howdy">
+            <echo>  your choice is ${choice}...."</echo>
+            
+        </target>
+</project>

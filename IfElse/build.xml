@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="if.test" default="doIt">
+
+    <target name="doIt" depends="-doIt.init, -test, -prod, -dev, -else"></target>
+
+    <target name="-doIt.init">
+
+        <condition property="do.test">
+            <equals arg1="${arg1}" arg2="test" />
+        </condition>
+        <condition property="do.prod">
+            <equals arg1="${arg1}" arg2="prod" />
+        </condition>
+        <condition property="do.dev">
+            <equals arg1="${arg1}" arg2="dev" />
+        </condition>
+        <condition property="do.else">
+            <not>
+                <or>
+                <equals arg1="${arg1}" arg2="test" />
+                <equals arg1="${arg1}" arg2="prod" />
+                <equals arg1="${arg1}" arg2="dev" />
+                </or>
+            </not>
+        </condition>
+    </target>
+
+    <target name="-test" if="do.test">
+        <echo>this target will be called only when property $${do.test} is set</echo>
+    </target>
+
+    <target name="-prod" if="do.prod">
+        <echo>this target will be called only when property $${do.prod} is set</echo>
+    </target>
+
+    <target name="-dev" if="do.dev">
+        <echo>this target will be called only when property $${do.dev} is set</echo>
+    </target>
+
+    <target name="-else" if="do.else">
+        <echo>this target will be called only when property $${env} does not equal test/prod/dev</echo>
+    </target>
+
+</project>
