@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Overriding" basedir="." default="run">
+  <tstamp>
+      <format property="timestamp" pattern="MM/dd/yyyy hh:mm aa"
+              offset="-0" unit="hour"/>
+  </tstamp>
+   <tstamp prefix="start"/>
+    <target name="init" description="Initializes properties">
+        <property name="project.name" value="Overriding" /> 
+        <property name="src.dir" value="src" />
+        <property name="build.dir" value="build" />
+        <property name="classes.dir" value="${build.dir}/classes" />
+        <property name="etc.dir" value="etc" />
+        <property name="version" value="1.1" />
+        <property name="Now" value="${timestamp}" />
+    </target>
+
+   <target name="prepare" description="Creates the build and classes directories" depends="init">
+       <mkdir dir="${classes.dir}" />
+       <mkdir dir="${etc.dir}" />
+   </target>
+
+    <target name="compile" description="Compiles the code" depends="prepare">
+        <javac srcdir="${src.dir}" 
+                  destdir="${classes.dir}" />
+    </target>
+
+    <target name="jarfile" description="JARs the code" depends="compile">
+        <jar destfile="${build.dir}/${project.name}.jar" 
+               basedir="${classes.dir}" />
+    </target>
+    
+    <target name="manifist" description="create manifest file" depends="jarfile">
+      <manifest file="${etc.dir}/MANIFEST.MF">
+          <section name="common">
+          <attribute name="Built-By" value="${user.name}"/>
+          <attribute name="Specification-Title" value="Airetalk Build"/>
+          <attribute name="Specification-Version" value="${version}"/>
+          <attribute name="Specification-Vendor" value="PingShow Inc"/>
+          <attribute name="User-Name" value="${user.name}"/>
+          <attribute name="Implementation-Title" value="common"/>
+          <attribute name="Implementation-Version" value="${version} ${Now}"/> 
+          <attribute name="Implementation-Vendor" value="PingShow Inc."/>
+          </section>
+      </manifest>
+    </target>
+
+    <target name ="run"  description="run the class" depends="jarfile">
+      <java classname="${project.name}" fork="true">
+        <classpath>
+           <pathelement location="${classes.dir}"/>
+        </classpath>
+      </java>
+      
+    </target>
+
+    <target name="clean" description="Delete the build directory" depends="init">
+        <delete dir="${build.dir}"/>
+    </target>
+
+</project>
